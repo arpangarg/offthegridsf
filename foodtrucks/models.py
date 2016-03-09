@@ -12,3 +12,9 @@ class Truck(models.Model):
 class TruckFrequency(models.Model):
 	vendor = models.CharField(max_length=50)
 	frequency = models.IntegerField()
+
+class TruckProperties(models.Model):
+	vendor = models.CharField(max_length=50)
+	url = models.CharField(max_length=200)
+	img_url = models.CharField(max_length=200)
+	food_types = models.CharField(max_length=200)
