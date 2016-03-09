@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Off the Grid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<meta charset="utf-8">
+  	<title>Popular Food Trucks SF</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  	<link rel="icon" type="image/png" href="{{STATIC_URL}}img/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="{{STATIC_URL}}img/favicon-16x16.png" sizes="16x16" />
 
 	<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
 	<link href="{{STATIC_URL}}css/style.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}css/4-col-portfolio.css"
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -17,46 +21,56 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<div class="jumbotron">
-				<h1>
-					Off the Grid SF!
-				</h1>
-				<p>
-					Shows the most frequent trucks over the past 30 days.
-				</p>
-			</div>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>
-							Rank
-						</th>
-						<th>
-							Vendor
-						</th>
-						<th>
-							Frequency
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for truck in vendor_list %}
-						<tr>
-							<td>
-								{{ forloop.counter}}
-							</td>
-							<td>
-								{{truck.vendor}}
-							</td>
-							<td>
-								{{truck.frequency}}
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+			<br>
+			<img src="{{STATIC_URL}}img/headerimage.jpg" alt="">
+			
+			<div class="page-header"></div>
+			<div class="well">
+        <h4>Shows food trucks (by Off the Grid) around San Francisco sorted by popularity over the past month.</h4>
+      </div>
+      <br>
+			<div class="row">
+				{% for truck in popular_trucks %}
+	            <div class="col-md-3 portfolio-item">
+					<center>
+						<a href="{{truck.url}}">
+							<img class="img-thumbnail" src="{{truck.img_url}}" alt="">
+						</a>
+					</center>
+	                <p><h4><center>
+	                	<a href="{{truck.url}}">
+	                		{{truck.vendor}}
+	                	</a>
+	                </center></h4></p>
+	                <p><h5><center><i>
+	                	{{truck.food_types}}
+	                </i></center></h5></p>
+	                <p><h5><center>
+	                	Popularity: {{truck.popularity}}
+	                </center></h5></p>
+	            </div>
+				{% if forloop.counter|divisibleby:4 %}
+	        </div>
+	        <br><br>
+	        <div class="row">
+	        	{% endif %}
+	            {% endfor %}
+        	</div>
 		</div>
 	</div>
+	<hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p><a href="http://www.github.com/arpangarg">
+                    	How is popularity determined?
+                    </a></p>
+                    <br><br>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
 </div>
 </body>
 </html>
